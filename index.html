@@ -1,0 +1,75 @@
+<!doctype HTML>
+<head>
+<title>Math Game!</title>
+</head>
+<script>
+var number1 = Math.floor(Math.random() * 101)
+var number2 = Math.floor(Math.random() * 101);
+var timer = 00;
+var correct = 0;
+var incorrect = 0;
+var correctsPerMin = 0;
+function check() {
+  if (document.getElementById("NameInput").value == number1 + number2) {
+    document.getElementById("NameInput").value = "Correct!"
+    correct = correct+1;
+    document.getElementById("Correct").innerHTML = "Correct: " + correct;
+    setTimeout(function() {
+      document.getElementById("NameInput").value = "";
+      randomize();
+    }, 2000);
+    
+  } else {
+    document.getElementById("NameInput").value = "Incorrect!"
+    incorrect  = incorrect+1;
+    document.getElementById("Incorrect").innerHTML = "Incorrect: " + incorrect;
+    setTimeout(function() {
+      document.getElementById("NameInput").value = "";
+      randomize();
+    }, 2000);
+    
+  }
+}
+setInterval(function() {
+  document.getElementById("Text").innerHTML = "What is " + number1 + "+" + number2;
+}, 1000);
+function randomize() {
+  number1 = Math.floor(Math.random() * 101)
+  number2 = Math.floor(Math.random() * 101);
+}
+setInterval(function() {
+    timer = timer + 1;
+    
+  }, 1000);
+setInterval(function() {
+  document.getElementById("Timer").innerHTML = "Timer: " + timer
+}, 1000);
+setInterval(function() {
+  document.getElementById("CorrectsPerMin").innerHTML = correct/60;
+}, 1000);
+</script>
+<body>
+<style>
+input {
+  font-size: 25px;
+  font-weight: bold;
+  background-color: cyan;
+}
+body {
+  background-color: cyan;
+}
+button {
+  background-color: white;
+}
+</style>
+<h1 id="Text">
+  What is 5+5 
+</h1>
+<input type="text" id="NameInput">
+
+ <button onclick="check()">check</button>
+<h1 id="Timer">Timer: 00</h1>
+<h1 id="Correct">Correct: 0</h1>
+<h1 id="Incorrect">Incorrect: 0</h1>
+<h1 id="CorrectsPerMin">Corrects Per Minute: 0</h1>
+</body>
